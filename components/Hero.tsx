@@ -32,15 +32,17 @@ export default function Hero() {
               Senior Flutter developer
               <br />
               shipping{" "}
-              <span className="italic text-[var(--text-2)]">production-grade</span>{" "}
+              <span className="italic text-[var(--text-2)]">
+                production-grade
+              </span>{" "}
               mobile apps.
             </h1>
 
             <p className="max-w-[52ch] text-[0.98rem] leading-[1.7] text-[var(--text-2)] sm:text-[1.05rem]">
-              I&apos;m Ali — I build polished iOS &amp; Android apps in Flutter for
-              founders and teams who care about craft. 6+ years writing Dart,
-              30+ apps shipped to the stores, and a track record of launching
-              fast without cutting corners.
+              I&apos;m Ali — I build polished iOS &amp; Android apps in Flutter
+              for founders and teams who care about craft. 6+ years writing
+              Dart, 30+ apps shipped to the stores, and a track record of
+              launching fast without cutting corners.
             </p>
 
             <div className="flex flex-wrap items-center gap-2.5 pt-1">

@@ -24,10 +24,18 @@ export default function Footer() {
         </a>
 
         <div className="flex items-center gap-5 text-sm text-[var(--text-2)]">
-          <a href="#work" className="hover:text-[var(--text)]">Work</a>
-          <a href="#about" className="hover:text-[var(--text)]">About</a>
-          <a href="#stack" className="hover:text-[var(--text)]">Stack</a>
-          <span className="text-[var(--muted)]">© {new Date().getFullYear()}</span>
+          <a href="#work" className="hover:text-[var(--text)]">
+            Work
+          </a>
+          <a href="#about" className="hover:text-[var(--text)]">
+            About
+          </a>
+          <a href="#stack" className="hover:text-[var(--text)]">
+            Stack
+          </a>
+          <span className="text-[var(--muted)]">
+            © {new Date().getFullYear()}
+          </span>
         </div>
       </div>
     </footer>

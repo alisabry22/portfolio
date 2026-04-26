@@ -62,16 +62,15 @@ export default function Projects() {
         {/* Grid */}
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((p) => (
-            <article
-              key={p.id}
-              className="card group flex flex-col p-5 sm:p-6"
-            >
+            <article key={p.id} className="card group flex flex-col p-5 sm:p-6">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--surface-2)] text-2xl">
                   {p.emoji}
                 </div>
                 {p.featured && (
-                  <span className="tag tag-accent text-[0.65rem]">Featured</span>
+                  <span className="tag tag-accent text-[0.65rem]">
+                    Featured
+                  </span>
                 )}
               </div>
 

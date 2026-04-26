@@ -29,15 +29,36 @@ const flutterStack = [
 const groups = [
   {
     title: "Web & backend",
-    items: ["Next.js", "TypeScript", "Node.js", "Express", "REST / GraphQL", "PostgreSQL", "Prisma"],
+    items: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "REST / GraphQL",
+      "PostgreSQL",
+      "Prisma",
+    ],
   },
   {
     title: "AI & integrations",
-    items: ["OpenAI / Claude", "Whisper", "Vector DBs", "OCR", "LangChain", "On-device ML"],
+    items: [
+      "OpenAI / Claude",
+      "Whisper",
+      "Vector DBs",
+      "OCR",
+      "LangChain",
+      "On-device ML",
+    ],
   },
   {
     title: "Tooling & process",
-    items: ["Git / GitHub", "CI / CD", "Figma → code", "Code review", "Agile sprints"],
+    items: [
+      "Git / GitHub",
+      "CI / CD",
+      "Figma → code",
+      "Code review",
+      "Agile sprints",
+    ],
   },
 ];
 
@@ -55,8 +76,8 @@ export default function Skills() {
               Built around Flutter.
             </h2>
             <p className="mt-5 max-w-md text-[0.95rem] leading-[1.75] text-[var(--text-2)]">
-              Mobile is my home base — paired with a wider stack so I can take
-              a product from idea to App Store, Play Store, and the web.
+              Mobile is my home base — paired with a wider stack so I can take a
+              product from idea to App Store, Play Store, and the web.
             </p>
           </div>
 
@@ -80,10 +101,7 @@ export default function Skills() {
               </p>
               <div className="mt-5 flex flex-wrap gap-1.5">
                 {flutterStack.map((t, i) => (
-                  <span
-                    key={t}
-                    className={i < 3 ? "tag tag-accent" : "tag"}
-                  >
+                  <span key={t} className={i < 3 ? "tag tag-accent" : "tag"}>
                     {t}
                   </span>
                 ))}

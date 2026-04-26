@@ -59,7 +59,10 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <a href="#contact" className="hidden md:inline-flex btn btn-primary h-10">
+          <a
+            href="#contact"
+            className="hidden md:inline-flex btn btn-primary h-10"
+          >
             Hire me
           </a>
           <button

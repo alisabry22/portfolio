@@ -39,7 +39,9 @@ export default function Contact() {
     if (!formRef.current?.reportValidity()) return;
     const message = buildMessage();
     if (channel === "email") {
-      const subject = encodeURIComponent(`${b.projectType} — inquiry for Ali Sabry`);
+      const subject = encodeURIComponent(
+        `${b.projectType} — inquiry for Ali Sabry`,
+      );
       const body = encodeURIComponent(message);
       window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
       return;
@@ -53,7 +55,11 @@ export default function Contact() {
 
   const onChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
-  ) => setB((prev) => ({ ...prev, [e.currentTarget.name]: e.currentTarget.value }));
+  ) =>
+    setB((prev) => ({
+      ...prev,
+      [e.currentTarget.name]: e.currentTarget.value,
+    }));
 
   const channelIcon = (label: string) =>
     label === "Email" ? Mail : label === "WhatsApp" ? MessageCircle : Globe;
