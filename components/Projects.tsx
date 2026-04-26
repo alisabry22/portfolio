@@ -15,7 +15,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden border-t border-[var(--line)] py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-[var(--line)] py-16 sm:py-20"
     >
       {/* bg glow */}
       <div className="pointer-events-none absolute left-0 top-1/3 h-[50vh] w-[40vw] rounded-full bg-[var(--accent)] opacity-[0.05] blur-[120px]" />

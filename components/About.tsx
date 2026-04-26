@@ -5,7 +5,7 @@ import { services } from "@/app/data/site";
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden border-t border-[var(--line)] py-24 sm:py-32">
+    <section id="about" className="relative overflow-hidden border-t border-[var(--line)] py-16 sm:py-20">
       {/* Background glow */}
       <div className="pointer-events-none absolute right-0 top-0 h-[60vh] w-[40vw] rounded-full bg-[var(--accent-2)] opacity-[0.04] blur-[120px]" />
 

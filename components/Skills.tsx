@@ -8,7 +8,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-[var(--line)] bg-[var(--bg-soft)] py-16 sm:py-20"
     >
       {/* Ambient glow */}
       <div className="pointer-events-none absolute right-[-10vw] top-[-5vh] h-[60vh] w-[40vw] rounded-full bg-[var(--accent-2)] opacity-[0.05] blur-[130px]" />

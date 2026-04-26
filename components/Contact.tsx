@@ -80,7 +80,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-[var(--line)] py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-[var(--line)] py-16 sm:py-20"
     >
       {/* Ambient glows */}
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-[50vh] w-[60vw] -translate-x-1/2 rounded-full bg-[var(--accent)] opacity-[0.06] blur-[140px]" />
