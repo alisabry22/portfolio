@@ -8,19 +8,30 @@ export default function Footer() {
           <div className="font-display text-2xl leading-none text-[var(--text)]">
             Ali Sabry
           </div>
-          <div className="mt-1.5">Mobile, SaaS, and AI product engineering.</div>
+          <div className="mt-1.5">
+            Mobile, SaaS, and AI product engineering.
+          </div>
         </div>
 
         <div>{contactInfo.email}</div>
 
         <div className="flex items-center gap-6">
-          <a href="#about" className="transition-colors hover:text-[var(--text)]">
+          <a
+            href="#about"
+            className="transition-colors hover:text-[var(--text)]"
+          >
             About
           </a>
-          <a href="#projects" className="transition-colors hover:text-[var(--text)]">
+          <a
+            href="#projects"
+            className="transition-colors hover:text-[var(--text)]"
+          >
             Work
           </a>
-          <a href="#contact" className="transition-colors hover:text-[var(--text)]">
+          <a
+            href="#contact"
+            className="transition-colors hover:text-[var(--text)]"
+          >
             Contact
           </a>
           <span className="opacity-40">© 2025</span>

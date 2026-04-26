@@ -33,9 +33,13 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Link href="/" className="flex items-center gap-3">
-          <span className="text-sm font-bold tracking-tight text-[var(--text)]">Ali Sabry</span>
+          <span className="text-sm font-bold tracking-tight text-[var(--text)]">
+            Ali Sabry
+          </span>
           <span className="hidden h-4 w-px bg-[var(--line)] sm:block" />
-          <span className="hidden text-xs text-[var(--muted)] sm:block">Product Engineer</span>
+          <span className="hidden text-xs text-[var(--muted)] sm:block">
+            Product Engineer
+          </span>
         </Link>
 
         <ul className="hidden md:flex items-center gap-7">

@@ -9,18 +9,26 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
 
   const filteredProjects = projects.filter(
-    (p) => activeCategory === "all" || p.categories.includes(activeCategory)
+    (p) => activeCategory === "all" || p.categories.includes(activeCategory),
   );
 
   return (
-    <section id="projects" className="border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32">
+    <section
+      id="projects"
+      className="border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32"
+    >
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="grid gap-8 pb-14 lg:grid-cols-2 lg:items-end lg:pb-16">
           <div className="space-y-4">
             <p className="section-label">Selected work</p>
-            <h2 className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]" style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}>
-              Products with<br />real users.
+            <h2
+              className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
+              style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+            >
+              Products with
+              <br />
+              real users.
             </h2>
           </div>
           <p className="max-w-xl text-base leading-[1.9] text-[var(--muted)] sm:text-lg lg:pb-2">
@@ -91,7 +99,9 @@ export default function Projects() {
                   </div>
 
                   {/* Content */}
-                  <div className={`space-y-3 ${project.featured && index === 0 ? "max-w-2xl" : ""}`}>
+                  <div
+                    className={`space-y-3 ${project.featured && index === 0 ? "max-w-2xl" : ""}`}
+                  >
                     <h3 className="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl">
                       {project.title}
                     </h3>

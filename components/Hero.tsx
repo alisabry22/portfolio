@@ -8,7 +8,10 @@ import { contactInfo, leadMetrics } from "@/app/data/site";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-[100svh] border-b border-[var(--line)]">
+    <section
+      id="hero"
+      className="relative min-h-[100svh] border-b border-[var(--line)]"
+    >
       <div className="mx-auto grid min-h-[100svh] max-w-[1280px] items-stretch px-5 sm:px-8 lg:grid-cols-[1fr_460px] lg:px-12">
         {/* Left content */}
         <motion.div
@@ -24,16 +27,24 @@ export default function Hero() {
             </div>
 
             <div>
-              <h1 className="font-display leading-[0.88] tracking-[-0.02em] text-[var(--text)]" style={{ fontSize: "clamp(4.5rem, 12vw, 9.5rem)" }}>
-                Ali<br />Sabry
+              <h1
+                className="font-display leading-[0.88] tracking-[-0.02em] text-[var(--text)]"
+                style={{ fontSize: "clamp(4.5rem, 12vw, 9.5rem)" }}
+              >
+                Ali
+                <br />
+                Sabry
               </h1>
               <p className="mt-6 max-w-[32ch] text-xl font-semibold leading-[1.4] text-[var(--muted-strong)] sm:text-2xl">
-                Product-focused engineering for launches that need both taste and speed.
+                Product-focused engineering for launches that need both taste
+                and speed.
               </p>
             </div>
 
             <p className="max-w-[44ch] text-base leading-[1.9] text-[var(--muted)] sm:text-lg">
-              I design and build mobile apps, web experiences, and AI-powered products that look sharp, move fast, and give founders a clearer path to traction.
+              I design and build mobile apps, web experiences, and AI-powered
+              products that look sharp, move fast, and give founders a clearer
+              path to traction.
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -95,12 +106,18 @@ export default function Hero() {
             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[rgba(249,247,243,0.80)] to-transparent" />
 
             <div className="absolute left-4 top-4 rounded-full border border-[var(--line)] bg-[rgba(249,247,243,0.88)] px-4 py-2 backdrop-blur-sm">
-              <span className="text-xs font-bold tracking-wide text-[var(--text)]">Based in Egypt</span>
+              <span className="text-xs font-bold tracking-wide text-[var(--text)]">
+                Based in Egypt
+              </span>
             </div>
 
             <div className="absolute bottom-6 left-4 right-4 rounded-xl border border-[var(--line)] bg-[rgba(249,247,243,0.90)] p-4 backdrop-blur-sm">
-              <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[var(--muted)]">Shipping since day one</p>
-              <p className="mt-1 text-sm font-bold text-[var(--text)]">Mobile · SaaS · AI Products</p>
+              <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[var(--muted)]">
+                Shipping since day one
+              </p>
+              <p className="mt-1 text-sm font-bold text-[var(--text)]">
+                Mobile · SaaS · AI Products
+              </p>
             </div>
           </div>
         </motion.div>

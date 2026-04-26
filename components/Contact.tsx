@@ -26,12 +26,8 @@ export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const buildMessage = () => {
-    const intro = brief.name.trim()
-      ? `Hi Ali, I'm ${brief.name}.`
-      : "Hi Ali,";
-    const emailLine = brief.email.trim()
-      ? `My email is ${brief.email}.`
-      : "";
+    const intro = brief.name.trim() ? `Hi Ali, I'm ${brief.name}.` : "Hi Ali,";
+    const emailLine = brief.email.trim() ? `My email is ${brief.email}.` : "";
     const projectLine = `I'm interested in a ${brief.projectType.toLowerCase()} project.`;
     const timelineLine = brief.timeline.trim()
       ? `Ideal timeline: ${brief.timeline}.`
@@ -54,7 +50,7 @@ export default function Contact() {
 
     if (channel === "email") {
       const subject = encodeURIComponent(
-        `${brief.projectType} project inquiry for Ali Sabry`
+        `${brief.projectType} project inquiry for Ali Sabry`,
       );
       const body = encodeURIComponent(message);
       window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
@@ -65,14 +61,14 @@ export default function Contact() {
     window.open(
       `https://wa.me/201021142545?text=${whatsappMessage}`,
       "_blank",
-      "noopener,noreferrer"
+      "noopener,noreferrer",
     );
   };
 
   const handleChange = (
     event: ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const target = event.currentTarget;
     setBrief((current) => ({
@@ -82,15 +78,23 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32">
+    <section
+      id="contact"
+      className="border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32"
+    >
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           {/* Left */}
           <div className="space-y-10">
             <div className="space-y-5">
               <p className="section-label">Let&apos;s build</p>
-              <h2 className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]" style={{ fontSize: "clamp(3rem, 7vw, 5rem)" }}>
-                Make the next<br />launch land.
+              <h2
+                className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
+                style={{ fontSize: "clamp(3rem, 7vw, 5rem)" }}
+              >
+                Make the next
+                <br />
+                launch land.
               </h2>
               <p className="max-w-md text-base leading-[1.9] text-[var(--muted)] sm:text-lg">
                 If you know what you need, reach out directly. If the scope is
@@ -112,11 +116,11 @@ export default function Contact() {
                   <a
                     key={channel.label}
                     href={channel.href}
-                    target={channel.href.startsWith("http") ? "_blank" : undefined}
+                    target={
+                      channel.href.startsWith("http") ? "_blank" : undefined
+                    }
                     rel={
-                      channel.href.startsWith("http")
-                        ? "noreferrer"
-                        : undefined
+                      channel.href.startsWith("http") ? "noreferrer" : undefined
                     }
                     className="group flex items-center justify-between rounded-xl border border-[var(--line)] bg-[var(--panel)] px-5 py-4 transition-all hover:border-[rgba(20,20,18,0.20)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
                   >
