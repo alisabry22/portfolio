@@ -16,7 +16,7 @@ export default function Footer() {
               Ali <span className="gradient-text">Sabry</span>
             </div>
             <div className="mt-1.5 text-[0.82rem]">
-              Mobile · SaaS · AI product engineering
+              Senior Flutter · SaaS · AI product engineering
             </div>
           </div>
 

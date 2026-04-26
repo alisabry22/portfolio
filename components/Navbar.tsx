@@ -41,7 +41,7 @@ export default function Navbar() {
           </span>
           <span className="hidden h-4 w-px bg-[var(--line-strong)] sm:block" />
           <span className="hidden text-xs text-[var(--muted)] sm:block">
-            Product Engineer
+            Senior Flutter Developer
           </span>
         </Link>
 

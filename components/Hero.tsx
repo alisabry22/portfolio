@@ -35,7 +35,7 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
               </span>
-              Available for new projects
+              Senior Flutter Developer · Available
             </span>
           </motion.div>
 
@@ -51,13 +51,13 @@ export default function Hero() {
 
           <motion.p
             variants={fadeUp}
-            className="max-w-[40ch] text-base leading-[1.7] text-[var(--muted-strong)] sm:text-lg"
+            className="max-w-[42ch] text-base leading-[1.7] text-[var(--muted-strong)] sm:text-lg"
           >
-            Product-focused engineering for launches that need{" "}
-            <em className="not-italic text-[var(--text)]">taste</em> and{" "}
-            <em className="not-italic text-[var(--text)]">speed.</em> I design
-            and build mobile apps, web experiences, and AI-powered products
-            that move fast and give founders a clearer path to traction.
+            <em className="not-italic text-[var(--text)]">Senior Flutter developer</em>{" "}
+            shipping production mobile apps, plus web and AI products that
+            need <em className="not-italic text-[var(--text)]">taste</em> and{" "}
+            <em className="not-italic text-[var(--text)]">speed.</em> Built for
+            founders who want one person to own product, design, and engineering.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5 pt-1">
@@ -101,7 +101,10 @@ export default function Hero() {
 
           <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-1.5">
             <Sparkles size={12} className="text-[var(--accent)]" />
-            {["Flutter", "Next.js", "Firebase", "AI / LLM", "RevenueCat"].map((t) => (
+            <span className="rounded-full border border-[var(--accent)] bg-[var(--accent-fade)] px-3 py-1 text-xs font-bold text-[var(--accent-strong)]">
+              Flutter · Senior
+            </span>
+            {["Dart", "Next.js", "Firebase", "AI / LLM", "RevenueCat"].map((t) => (
               <span key={t} className="tag-pill">{t}</span>
             ))}
           </motion.div>

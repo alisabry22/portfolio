@@ -16,28 +16,30 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Ali Sabry | Mobile, SaaS, and AI Product Engineer",
+  title: "Ali Sabry | Senior Flutter Developer · Mobile, SaaS, and AI",
   description:
-    "Ali Sabry builds launch-ready mobile apps, SaaS products, and AI-powered experiences for founders who need strong design, fast execution, and shipped results.",
+    "Senior Flutter developer building launch-ready mobile apps, SaaS products, and AI-powered experiences for founders who need strong design, fast execution, and shipped results.",
   keywords: [
     "Ali Sabry",
+    "Senior Flutter developer",
     "Flutter developer",
+    "Dart developer",
     "Next.js developer",
     "AI product engineer",
     "mobile app developer",
     "freelance software engineer",
   ],
   openGraph: {
-    title: "Ali Sabry | Mobile, SaaS, and AI Product Engineer",
+    title: "Ali Sabry | Senior Flutter Developer",
     description:
-      "From mobile launches to AI product experiences, Ali Sabry helps founders ship polished products that attract users and convert better.",
+      "Senior Flutter developer shipping mobile, SaaS, and AI products that founders actually launch.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ali Sabry | Mobile, SaaS, and AI Product Engineer",
+    title: "Ali Sabry | Senior Flutter Developer",
     description:
-      "Launch-focused engineering for mobile apps, SaaS platforms, and AI features.",
+      "Senior Flutter developer building launch-ready mobile, SaaS, and AI products.",
   },
 };
 
