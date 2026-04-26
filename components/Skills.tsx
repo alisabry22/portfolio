@@ -13,21 +13,20 @@ export default function Skills() {
       {/* Ambient glow */}
       <div className="pointer-events-none absolute right-[-10vw] top-[-5vh] h-[60vh] w-[40vw] rounded-full bg-[var(--accent-2)] opacity-[0.05] blur-[130px]" />
 
-      <div className="mx-auto max-w-[1300px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="grid gap-10 pb-16 lg:grid-cols-2 lg:pb-20">
-          <div className="space-y-4">
+        <div className="grid gap-6 pb-10 lg:grid-cols-2 lg:gap-10 lg:pb-12">
+          <div className="space-y-3">
             <p className="section-label">Capabilities</p>
             <h2
-              className="font-display leading-[0.9] tracking-[-0.02em] text-[var(--text)]"
-              style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+              className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
+              style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.25rem)" }}
             >
-              What I take
-              <br />
+              What I take{" "}
               <span className="gradient-text">off your plate.</span>
             </h2>
           </div>
-          <p className="flex items-end pb-1 max-w-xl text-base leading-[1.9] text-[var(--muted)] sm:text-lg">
+          <p className="flex items-end pb-1 max-w-xl text-sm leading-[1.75] text-[var(--muted)] sm:text-base">
             I step in at strategy, build, or polish level — helping products
             gain momentum fast without the coordination overhead.
           </p>

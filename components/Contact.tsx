@@ -85,21 +85,20 @@ export default function Contact() {
       {/* Ambient glows */}
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-[50vh] w-[60vw] -translate-x-1/2 rounded-full bg-[var(--accent)] opacity-[0.06] blur-[140px]" />
 
-      <div className="mx-auto max-w-[1300px] px-5 sm:px-8 lg:px-12">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
           {/* Left */}
-          <div className="space-y-10">
-            <div className="space-y-5">
+          <div className="space-y-7">
+            <div className="space-y-4">
               <p className="section-label">Let&apos;s build</p>
               <h2
-                className="font-display leading-[0.9] tracking-[-0.02em] text-[var(--text)]"
-                style={{ fontSize: "clamp(3rem, 7vw, 5rem)" }}
+                className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
+                style={{ fontSize: "clamp(2.5rem, 5.5vw, 4rem)" }}
               >
-                Make the next
-                <br />
+                Make the next{" "}
                 <span className="gradient-text">launch land.</span>
               </h2>
-              <p className="max-w-md text-base leading-[1.9] text-[var(--muted)] sm:text-lg">
+              <p className="max-w-md text-sm leading-[1.75] text-[var(--muted)] sm:text-base">
                 If you know what you need, reach out directly. If the scope is
                 still rough, use the brief builder and I&apos;ll get a clearer
                 picture fast.

@@ -8,7 +8,7 @@ export const contactInfo = {
 };
 
 export const leadMetrics = [
-  { value: "3+", label: "apps launched" },
+  { value: "30+", label: "apps launched" },
   { value: "6+", label: "years shipping" },
   { value: "Egypt + US", label: "markets touched" },
 ];

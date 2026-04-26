@@ -21,13 +21,13 @@ export default function Hero() {
       <div className="pointer-events-none absolute left-[-15vw] top-[-10vh] h-[70vh] w-[70vw] rounded-full bg-[var(--accent)] opacity-[0.07] blur-[140px]" />
       <div className="pointer-events-none absolute bottom-0 right-[-10vw] h-[50vh] w-[50vw] rounded-full bg-[var(--accent-2)] opacity-[0.05] blur-[120px]" />
 
-      <div className="mx-auto grid max-w-[1300px] items-start px-5 pt-28 sm:px-8 sm:pt-32 lg:grid-cols-[1.1fr_460px] lg:gap-14 lg:px-12 lg:pt-28">
+      <div className="mx-auto grid max-w-[1280px] items-center gap-10 px-5 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28 lg:grid-cols-[1.1fr_440px] lg:gap-12 lg:px-12 lg:pb-20">
         {/* Left */}
         <motion.div
           variants={stagger}
           initial="initial"
           animate="animate"
-          className="flex flex-col gap-6 pb-16 lg:gap-7 lg:pb-20"
+          className="flex flex-col gap-5"
         >
           <motion.div variants={fadeUp}>
             <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(124,92,252,0.25)] bg-[rgba(124,92,252,0.1)] px-4 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.25em] text-[var(--accent-strong)]">
@@ -51,23 +51,16 @@ export default function Hero() {
 
           <motion.p
             variants={fadeUp}
-            className="max-w-[34ch] text-lg font-semibold leading-[1.5] text-[var(--muted-strong)] sm:text-xl"
+            className="max-w-[40ch] text-base leading-[1.7] text-[var(--muted-strong)] sm:text-lg"
           >
             Product-focused engineering for launches that need{" "}
             <em className="not-italic text-[var(--text)]">taste</em> and{" "}
-            <em className="not-italic text-[var(--text)]">speed.</em>
+            <em className="not-italic text-[var(--text)]">speed.</em> I design
+            and build mobile apps, web experiences, and AI-powered products
+            that move fast and give founders a clearer path to traction.
           </motion.p>
 
-          <motion.p
-            variants={fadeUp}
-            className="max-w-[44ch] text-base leading-[1.9] text-[var(--muted)]"
-          >
-            I design and build mobile apps, web experiences, and AI-powered
-            products that look sharp, move fast, and give founders a clearer
-            path to traction.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5 pt-1">
             <a
               href={`mailto:${contactInfo.email}?subject=Project%20Inquiry%20for%20Ali%20Sabry`}
               className="primary-button"
@@ -90,25 +83,23 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="accent-line max-w-[420px]" />
-
-          <motion.div variants={fadeUp} className="grid grid-cols-3 gap-6">
+          <motion.div variants={fadeUp} className="mt-2 grid grid-cols-3 gap-5 border-t border-[var(--line)] pt-5">
             {leadMetrics.map((metric) => (
               <div key={metric.label}>
                 <div
                   className="font-display leading-none text-[var(--text)]"
-                  style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+                  style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
                 >
                   {metric.value}
                 </div>
-                <div className="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[var(--muted)]">
+                <div className="mt-1.5 text-[0.62rem] font-bold uppercase tracking-[0.22em] text-[var(--muted)]">
                   {metric.label}
                 </div>
               </div>
             ))}
           </motion.div>
 
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2">
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-1.5">
             <Sparkles size={12} className="text-[var(--accent)]" />
             {["Flutter", "Next.js", "Firebase", "AI / LLM", "RevenueCat"].map((t) => (
               <span key={t} className="tag-pill">{t}</span>
@@ -121,7 +112,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.96, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative hidden lg:block lg:pb-16"
+          className="relative hidden lg:block"
         >
           <div className="absolute inset-4 rounded-3xl bg-[var(--accent)] opacity-20 blur-[80px]" />
 

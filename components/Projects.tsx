@@ -20,21 +20,20 @@ export default function Projects() {
       {/* bg glow */}
       <div className="pointer-events-none absolute left-0 top-1/3 h-[50vh] w-[40vw] rounded-full bg-[var(--accent)] opacity-[0.05] blur-[120px]" />
 
-      <div className="mx-auto max-w-[1300px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="grid gap-10 pb-16 lg:grid-cols-2 lg:items-end lg:pb-20">
-          <div className="space-y-4">
+        <div className="grid gap-6 pb-10 lg:grid-cols-2 lg:items-end lg:gap-10 lg:pb-12">
+          <div className="space-y-3">
             <p className="section-label">Selected work</p>
             <h2
-              className="font-display leading-[0.9] tracking-[-0.02em] text-[var(--text)]"
-              style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+              className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
+              style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.25rem)" }}
             >
-              Products with
-              <br />
+              Products with{" "}
               <span className="gradient-text">real users.</span>
             </h2>
           </div>
-          <p className="max-w-xl text-base leading-[1.9] text-[var(--muted)] sm:text-lg lg:pb-1">
+          <p className="max-w-xl text-sm leading-[1.75] text-[var(--muted)] sm:text-base lg:pb-1">
             Apps spanning AI finance, social publishing, health delivery,
             education, and branded commerce — each shipped and in the hands of
             real people.
@@ -42,7 +41,7 @@ export default function Projects() {
         </div>
 
         {/* Filters */}
-        <div className="mb-10 flex flex-wrap gap-2 border-b border-[var(--line)] pb-8">
+        <div className="mb-6 flex flex-wrap gap-2 border-b border-[var(--line)] pb-5">
           {categories.map((cat) => (
             <button
               key={cat.id}
