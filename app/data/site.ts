@@ -8,8 +8,8 @@ export const contactInfo = {
 };
 
 export const leadMetrics = [
-  { value: "8+", label: "apps launched" },
-  { value: "5+", label: "years shipping" },
+  { value: "3+", label: "apps launched" },
+  { value: "6+", label: "years shipping" },
   { value: "Egypt + US", label: "markets touched" },
 ];
 

@@ -13,31 +13,33 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" className="py-24 sm:py-28">
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-14 px-5 sm:px-8 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:items-end">
+    <section id="projects" className="border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32">
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
+        {/* Header */}
+        <div className="grid gap-8 pb-14 lg:grid-cols-2 lg:items-end lg:pb-16">
           <div className="space-y-4">
             <p className="section-label">Selected work</p>
-            <h2 className="font-display max-w-[10ch] text-5xl leading-[0.95] tracking-[-0.03em] text-[var(--text)] sm:text-6xl">
-              Products with real users and real stakes.
+            <h2 className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]" style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}>
+              Products with<br />real users.
             </h2>
           </div>
-          <p className="max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
-            These projects span AI finance, social publishing, health delivery,
-            education, and branded commerce. The common thread is a shipped
-            product with enough polish to earn trust quickly.
+          <p className="max-w-xl text-base leading-[1.9] text-[var(--muted)] sm:text-lg lg:pb-2">
+            Apps spanning AI finance, social publishing, health delivery,
+            education, and branded commerce. Each one shipped and in the hands
+            of real people.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3 border-b border-[var(--line)] pb-6">
+        {/* Filters */}
+        <div className="mb-10 flex flex-wrap gap-2.5 border-b border-[var(--line)] pb-8">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${
                 activeCategory === cat.id
-                  ? "border-[rgba(245,236,221,0.22)] bg-[var(--text)] text-[#151612]"
-                  : "border-[var(--line)] bg-white/[0.02] text-[var(--muted)] hover:bg-white/[0.05] hover:text-[var(--text)]"
+                  ? "border-[var(--text)] bg-[var(--text)] text-[var(--bg)]"
+                  : "border-[var(--line)] bg-[var(--panel)] text-[var(--muted)] hover:border-[rgba(20,20,18,0.20)] hover:text-[var(--text)]"
               }`}
             >
               {cat.label}
@@ -45,69 +47,71 @@ export default function Projects() {
           ))}
         </div>
 
-        <motion.div layout className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* Grid */}
+        <motion.div layout className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <AnimatePresence>
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 24 }}
-                transition={{ duration: 0.35 }}
-                className={`group relative overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[rgba(20,23,19,0.72)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(245,236,221,0.22)] hover:bg-[rgba(24,28,23,0.86)] sm:p-7 ${
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.3, delay: index * 0.04 }}
+                className={`group relative overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] sm:p-8 ${
                   project.featured && index === 0 ? "lg:col-span-2" : ""
                 }`}
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[var(--accent)] via-[rgba(245,236,221,0.6)] to-transparent" />
-                <div className="absolute right-4 top-4 text-7xl opacity-[0.08] transition-transform duration-300 group-hover:scale-110">
+                {/* Top accent line */}
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[var(--accent)] via-[rgba(194,90,26,0.4)] to-transparent" />
+
+                {/* Emoji watermark */}
+                <div className="absolute right-6 top-6 text-6xl opacity-[0.05] transition-opacity duration-300 group-hover:opacity-[0.09]">
                   {project.emoji}
                 </div>
 
                 <div className="relative flex h-full flex-col">
-                  <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
-                    <div className="space-y-3">
-                      <div className="section-label">
-                        {project.categories.filter((cat) => cat !== "all").join(" / ")}
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {project.platforms.map((platform) => (
-                          <span
-                            key={platform}
-                            className="rounded-full border border-[rgba(245,236,221,0.08)] px-3 py-1 text-[0.7rem] uppercase tracking-[0.18em] text-[var(--muted)]"
-                          >
-                            {platform}
-                          </span>
-                        ))}
-                      </div>
+                  {/* Top meta */}
+                  <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap gap-2">
+                      {project.platforms.map((platform) => (
+                        <span
+                          key={platform}
+                          className="rounded-full border border-[var(--line)] px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-[var(--muted)]"
+                        >
+                          {platform}
+                        </span>
+                      ))}
                     </div>
                     {project.featured && (
-                      <span className="rounded-full bg-[var(--accent-fade)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-strong)]">
+                      <span className="rounded-full bg-[var(--accent-fade)] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-[var(--accent)]">
                         Featured
                       </span>
                     )}
                   </div>
 
-                  <div className="max-w-2xl space-y-4">
-                    <h3 className="text-3xl font-semibold tracking-tight text-[var(--text)]">
+                  {/* Content */}
+                  <div className={`space-y-3 ${project.featured && index === 0 ? "max-w-2xl" : ""}`}>
+                    <h3 className="text-2xl font-bold tracking-tight text-[var(--text)] sm:text-3xl">
                       {project.title}
                     </h3>
-                    <p className="text-sm uppercase tracking-[0.22em] text-[var(--muted-strong)]">
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--accent)]">
                       {project.subtitle}
                     </p>
-                    <p className="text-base leading-8 text-[var(--muted)]">
+                    <p className="text-sm leading-[1.9] text-[var(--muted)] sm:text-base">
                       {project.description}
                     </p>
                   </div>
 
+                  {/* Stats */}
                   {project.stats && project.stats.length > 0 && (
-                    <div className="mt-8 grid gap-4 border-y border-[rgba(245,236,221,0.08)] py-6 sm:grid-cols-2">
+                    <div className="mt-7 grid gap-4 border-y border-[var(--line)] py-5 sm:grid-cols-2">
                       {project.stats.map((stat) => (
                         <div key={stat.label}>
-                          <div className="text-sm uppercase tracking-[0.2em] text-[var(--muted-strong)]">
+                          <div className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[var(--muted)]">
                             {stat.label}
                           </div>
-                          <div className="mt-2 text-xl font-semibold text-[var(--text)]">
+                          <div className="mt-1.5 text-lg font-bold text-[var(--text)]">
                             {stat.value}
                           </div>
                         </div>
@@ -115,28 +119,30 @@ export default function Projects() {
                     </div>
                   )}
 
-                  <div className="mt-8 flex flex-wrap gap-2">
+                  {/* Tags */}
+                  <div className="mt-6 flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-[rgba(245,236,221,0.08)] px-3 py-1 text-sm text-[var(--muted)]"
+                        className="rounded-full border border-[var(--line)] bg-[var(--bg-soft)] px-2.5 py-1 text-xs text-[var(--muted-strong)]"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="mt-8 flex flex-wrap gap-4">
+                  {/* Links */}
+                  <div className="mt-7 flex flex-wrap gap-5">
                     {project.links.map((link) => (
                       <a
                         key={link.label}
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--text)] transition-colors hover:text-[var(--accent-strong)]"
+                        className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--muted-strong)] transition-colors hover:text-[var(--accent)]"
                       >
                         {link.label}
-                        <ArrowUpRight size={16} />
+                        <ArrowUpRight size={14} />
                       </a>
                     ))}
                   </div>

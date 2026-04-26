@@ -27,27 +27,23 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-[var(--line)] bg-[rgba(17,19,17,0.84)] backdrop-blur-xl"
+          ? "border-b border-[var(--line)] bg-[rgba(249,247,243,0.92)] backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
+      <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Link href="/" className="flex items-center gap-3">
-          <span className="section-label hidden sm:block">Portfolio</span>
-          <div>
-            <div className="text-sm text-[var(--muted)]">Ali Sabry</div>
-            <div className="font-display text-2xl leading-none text-[var(--text)]">
-              Product Engineer
-            </div>
-          </div>
+          <span className="text-sm font-bold tracking-tight text-[var(--text)]">Ali Sabry</span>
+          <span className="hidden h-4 w-px bg-[var(--line)] sm:block" />
+          <span className="hidden text-xs text-[var(--muted)] sm:block">Product Engineer</span>
         </Link>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium tracking-wide text-[var(--muted)] transition-colors duration-200 hover:text-[var(--text)]"
+                className="text-sm font-medium text-[var(--muted)] transition-colors duration-200 hover:text-[var(--text)]"
               >
                 {link.label}
               </a>
@@ -57,9 +53,9 @@ export default function Navbar() {
 
         <a
           href={`mailto:${contactInfo.email}`}
-          className="hidden rounded-full border border-[var(--line)] px-5 py-2.5 text-sm font-semibold text-[var(--text)] transition-all duration-200 hover:border-[rgba(245,236,221,0.24)] hover:bg-white/5 md:inline-flex"
+          className="hidden rounded-full bg-[var(--text)] px-5 py-2.5 text-sm font-bold text-[var(--bg)] transition-all duration-200 hover:bg-[#2a2924] md:inline-flex"
         >
-          Start a project
+          Hire me
         </a>
 
         <button
@@ -67,26 +63,26 @@ export default function Navbar() {
           className="p-1 text-[var(--muted)] transition-colors hover:text-[var(--text)] md:hidden"
           aria-label="Toggle menu"
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="border-b border-[var(--line)] bg-[rgba(17,19,17,0.96)] px-5 py-5 backdrop-blur-xl md:hidden"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="border-t border-[var(--line)] bg-[rgba(249,247,243,0.97)] backdrop-blur-xl md:hidden"
           >
-            <div className="flex flex-col gap-4">
+            <div className="mx-auto flex max-w-[1280px] flex-col px-5 py-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="py-1 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--text)]"
+                  className="border-b border-[var(--line)] py-4 text-base font-medium text-[var(--text)] last:border-b-0"
                 >
                   {link.label}
                 </a>
@@ -94,9 +90,9 @@ export default function Navbar() {
               <a
                 href={`mailto:${contactInfo.email}`}
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[var(--text)] px-5 py-3 text-sm font-semibold text-[#151612]"
+                className="mt-4 rounded-full bg-[var(--text)] py-3 text-center text-sm font-bold text-[var(--bg)]"
               >
-                Start a project
+                Hire me
               </a>
             </div>
           </motion.div>
