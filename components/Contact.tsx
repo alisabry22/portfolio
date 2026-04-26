@@ -1,11 +1,10 @@
 "use client";
 
 import { ChangeEvent, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { ArrowUpRight, Globe, Mail, MessageCircle } from "lucide-react";
 import { contactChannels, contactInfo } from "@/app/data/site";
 
-type BriefState = {
+type Brief = {
   name: string;
   email: string;
   projectType: string;
@@ -13,272 +12,215 @@ type BriefState = {
   summary: string;
 };
 
-const initialBrief: BriefState = {
+const initial: Brief = {
   name: "",
   email: "",
-  projectType: "Mobile app",
+  projectType: "Mobile app (Flutter)",
   timeline: "",
   summary: "",
 };
 
 export default function Contact() {
-  const [brief, setBrief] = useState<BriefState>(initialBrief);
+  const [b, setB] = useState<Brief>(initial);
   const formRef = useRef<HTMLFormElement>(null);
 
   const buildMessage = () => {
-    const intro = brief.name.trim() ? `Hi Ali, I'm ${brief.name}.` : "Hi Ali,";
-    const emailLine = brief.email.trim() ? `My email is ${brief.email}.` : "";
-    const projectLine = `I'm interested in a ${brief.projectType.toLowerCase()} project.`;
-    const timelineLine = brief.timeline.trim()
-      ? `Ideal timeline: ${brief.timeline}.`
-      : "";
-    const summaryLine = brief.summary.trim()
-      ? `Project brief: ${brief.summary}`
-      : "";
-
-    return [intro, emailLine, projectLine, timelineLine, summaryLine]
-      .filter(Boolean)
-      .join("\n\n");
+    const lines = [
+      b.name.trim() ? `Hi Ali, I'm ${b.name}.` : "Hi Ali,",
+      b.email.trim() ? `Email: ${b.email}` : "",
+      `Project: ${b.projectType}`,
+      b.timeline.trim() ? `Timeline: ${b.timeline}` : "",
+      b.summary.trim() ? `Brief: ${b.summary}` : "",
+    ];
+    return lines.filter(Boolean).join("\n\n");
   };
 
-  const openDraft = (channel: "email" | "whatsapp") => {
-    if (!formRef.current?.reportValidity()) {
-      return;
-    }
-
+  const send = (channel: "email" | "whatsapp") => {
+    if (!formRef.current?.reportValidity()) return;
     const message = buildMessage();
-
     if (channel === "email") {
-      const subject = encodeURIComponent(
-        `${brief.projectType} project inquiry for Ali Sabry`,
-      );
+      const subject = encodeURIComponent(`${b.projectType} — inquiry for Ali Sabry`);
       const body = encodeURIComponent(message);
       window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
       return;
     }
-
-    const whatsappMessage = encodeURIComponent(message);
     window.open(
-      `https://wa.me/201021142545?text=${whatsappMessage}`,
+      `https://wa.me/201021142545?text=${encodeURIComponent(message)}`,
       "_blank",
       "noopener,noreferrer",
     );
   };
 
-  const handleChange = (
-    event: ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
-  ) => {
-    const target = event.currentTarget;
-    setBrief((current) => ({
-      ...current,
-      [target.name]: target.value,
-    }));
-  };
+  const onChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) => setB((prev) => ({ ...prev, [e.currentTarget.name]: e.currentTarget.value }));
+
+  const channelIcon = (label: string) =>
+    label === "Email" ? Mail : label === "WhatsApp" ? MessageCircle : Globe;
 
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden border-t border-[var(--line)] py-16 sm:py-20"
-    >
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[50vh] w-[60vw] -translate-x-1/2 rounded-full bg-[var(--accent)] opacity-[0.06] blur-[140px]" />
-
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
+    <section id="contact" className="divider py-20 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
           {/* Left */}
-          <div className="space-y-7">
-            <div className="space-y-4">
-              <p className="section-label">Let&apos;s build</p>
-              <h2
-                className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
-                style={{ fontSize: "clamp(2.5rem, 5.5vw, 4rem)" }}
-              >
-                Make the next{" "}
-                <span className="gradient-text">launch land.</span>
-              </h2>
-              <p className="max-w-md text-sm leading-[1.75] text-[var(--muted)] sm:text-base">
-                If you know what you need, reach out directly. If the scope is
-                still rough, use the brief builder and I&apos;ll get a clearer
-                picture fast.
-              </p>
-            </div>
+          <div>
+            <span className="eyebrow">Contact</span>
+            <h2
+              className="mt-4 font-display leading-[1] tracking-[-0.02em] text-[var(--text)]"
+              style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
+            >
+              Let&apos;s build
+              <br />
+              your next app.
+            </h2>
+            <p className="mt-5 max-w-md text-[0.95rem] leading-[1.75] text-[var(--text-2)]">
+              Send a quick brief and I&apos;ll reply within a day. If you prefer
+              to skip the form, reach out directly:
+            </p>
 
-            <div className="space-y-3">
-              {contactChannels.map((channel) => {
-                const Icon =
-                  channel.label === "Email"
-                    ? Mail
-                    : channel.label === "WhatsApp"
-                      ? MessageCircle
-                      : Globe;
-
+            <div className="mt-6 flex flex-col gap-2">
+              {contactChannels.map((c) => {
+                const Icon = channelIcon(c.label);
                 return (
                   <a
-                    key={channel.label}
-                    href={channel.href}
-                    target={
-                      channel.href.startsWith("http") ? "_blank" : undefined
-                    }
-                    rel={
-                      channel.href.startsWith("http") ? "noreferrer" : undefined
-                    }
-                    className="glass-card group flex items-center justify-between px-5 py-4 transition-all hover:border-[rgba(124,92,252,0.28)] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(124,92,252,0.08)]"
+                    key={c.label}
+                    href={c.href}
+                    target={c.href.startsWith("http") ? "_blank" : undefined}
+                    rel={c.href.startsWith("http") ? "noreferrer" : undefined}
+                    className="card group flex items-center justify-between gap-3 px-4 py-3.5"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-full border border-[var(--line-strong)] bg-[var(--accent-fade)] p-2.5 text-[var(--accent-strong)]">
-                        <Icon size={17} />
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--accent-soft)] text-[var(--accent)]">
+                        <Icon size={15} />
                       </div>
                       <div>
-                        <div className="text-[0.62rem] font-bold uppercase tracking-[0.24em] text-[var(--muted)]">
-                          {channel.label}
+                        <div className="text-[0.65rem] uppercase tracking-[0.18em] text-[var(--muted)]">
+                          {c.label}
                         </div>
-                        <div className="mt-0.5 text-sm font-semibold text-[var(--text)]">
-                          {channel.value}
+                        <div className="text-sm font-medium text-[var(--text)]">
+                          {c.value}
                         </div>
                       </div>
                     </div>
                     <ArrowUpRight
-                      size={16}
-                      className="text-[var(--muted)] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--accent-strong)]"
+                      size={14}
+                      className="text-[var(--muted)] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--text)]"
                     />
                   </a>
                 );
               })}
             </div>
-
-            <p className="text-sm leading-[1.8] text-[var(--muted)]">
-              Best fit for new product builds, premium portfolio or landing-page
-              redesigns, AI feature rollouts, and products needing a faster
-              release rhythm.
-            </p>
           </div>
 
-          {/* Right: Brief builder */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="glass-card relative overflow-hidden p-7 sm:p-8"
+          {/* Form */}
+          <form
+            ref={formRef}
+            onSubmit={(e) => e.preventDefault()}
+            className="card p-6 sm:p-7"
           >
-            {/* top glow line */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-50" />
+            <h3 className="text-[0.98rem] font-semibold text-[var(--text)]">
+              Project brief
+            </h3>
+            <p className="mt-1 text-[0.82rem] text-[var(--text-2)]">
+              Fill once — open it in email or WhatsApp.
+            </p>
 
-            <div className="mb-7 space-y-1.5">
-              <h3 className="text-xl font-bold text-[var(--text)]">
-                Draft your message
-              </h3>
-              <p className="text-sm leading-[1.8] text-[var(--muted)]">
-                Fill this out once and open it in email or WhatsApp with the
-                details already written.
-              </p>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[var(--text-2)]">
+                  Your name
+                </span>
+                <input
+                  required
+                  name="name"
+                  value={b.name}
+                  onChange={onChange}
+                  placeholder="Jane Founder"
+                  className="field mt-1.5"
+                />
+              </label>
+              <label className="block">
+                <span className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[var(--text-2)]">
+                  Email
+                </span>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  value={b.email}
+                  onChange={onChange}
+                  placeholder="jane@company.com"
+                  className="field mt-1.5"
+                />
+              </label>
             </div>
 
-            <form ref={formRef} className="space-y-5">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1.5">
-                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
-                    Your name
-                  </label>
-                  <input
-                    required
-                    name="name"
-                    type="text"
-                    value={brief.name}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
-                    Your email
-                  </label>
-                  <input
-                    required
-                    name="email"
-                    type="email"
-                    value={brief.email}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
-                    placeholder="john@company.com"
-                  />
-                </div>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1.5">
-                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
-                    Project type
-                  </label>
-                  <select
-                    name="projectType"
-                    value={brief.projectType}
-                    onChange={handleChange}
-                    className="w-full cursor-pointer rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all focus:border-[rgba(124,92,252,0.45)]"
-                  >
-                    <option value="Mobile app">Mobile app</option>
-                    <option value="Portfolio or landing page">
-                      Portfolio or landing page
-                    </option>
-                    <option value="SaaS platform">SaaS platform</option>
-                    <option value="AI feature or integration">
-                      AI feature or integration
-                    </option>
-                  </select>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
-                    Ideal timeline
-                  </label>
-                  <input
-                    name="timeline"
-                    type="text"
-                    value={brief.timeline}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
-                    placeholder="e.g. start this month"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
-                  Quick brief
-                </label>
-                <textarea
-                  required
-                  name="summary"
-                  rows={4}
-                  value={brief.summary}
-                  onChange={handleChange}
-                  className="w-full resize-none rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm leading-[1.8] text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
-                  placeholder="What are you building, what matters most, and what kind of help do you want from me?"
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[var(--text-2)]">
+                  Project type
+                </span>
+                <select
+                  name="projectType"
+                  value={b.projectType}
+                  onChange={onChange}
+                  className="field mt-1.5 cursor-pointer"
+                >
+                  <option>Mobile app (Flutter)</option>
+                  <option>Mobile + web product</option>
+                  <option>SaaS platform</option>
+                  <option>AI feature / integration</option>
+                  <option>Landing page / portfolio</option>
+                </select>
+              </label>
+              <label className="block">
+                <span className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[var(--text-2)]">
+                  Timeline
+                </span>
+                <input
+                  name="timeline"
+                  value={b.timeline}
+                  onChange={onChange}
+                  placeholder="e.g. starting next month"
+                  className="field mt-1.5"
                 />
-              </div>
+              </label>
+            </div>
 
-              <div className="grid gap-3 pt-2 sm:grid-cols-2">
-                <button
-                  type="button"
-                  onClick={() => openDraft("email")}
-                  className="primary-button"
-                >
-                  <Mail size={16} />
-                  Draft email
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openDraft("whatsapp")}
-                  className="secondary-button"
-                >
-                  <MessageCircle size={16} />
-                  Open WhatsApp
-                </button>
-              </div>
-            </form>
-          </motion.div>
+            <label className="mt-4 block">
+              <span className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[var(--text-2)]">
+                Brief
+              </span>
+              <textarea
+                required
+                name="summary"
+                rows={4}
+                value={b.summary}
+                onChange={onChange}
+                placeholder="What are you building, what matters most, and how can I help?"
+                className="field mt-1.5 resize-none"
+              />
+            </label>
+
+            <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+              <button
+                type="button"
+                onClick={() => send("email")}
+                className="btn btn-primary"
+              >
+                <Mail size={15} />
+                Email
+              </button>
+              <button
+                type="button"
+                onClick={() => send("whatsapp")}
+                className="btn btn-ghost"
+              >
+                <MessageCircle size={15} />
+                WhatsApp
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>

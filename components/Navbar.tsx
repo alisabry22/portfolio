@@ -1,110 +1,103 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { contactInfo } from "@/app/data/site";
 
-const navLinks = [
+const links = [
+  { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Capabilities" },
+  { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-[var(--line)] bg-[rgba(9,9,15,0.88)] backdrop-blur-2xl"
-          : "bg-transparent"
+          ? "border-b border-[var(--border)] bg-[rgba(10,10,12,0.75)] backdrop-blur-xl"
+          : "border-b border-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-20 max-w-[1300px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="h-7 w-7 rounded-lg bg-[var(--accent)] flex items-center justify-center shadow-[0_0_16px_var(--accent-glow)] transition-transform group-hover:scale-110">
-            <span className="text-[0.6rem] font-black text-white">AS</span>
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--text)] text-[var(--bg)] text-[0.7rem] font-black">
+            AS
           </div>
-          <span className="text-sm font-bold tracking-tight text-[var(--text)]">
-            Ali Sabry
-          </span>
-          <span className="hidden h-4 w-px bg-[var(--line-strong)] sm:block" />
-          <span className="hidden text-xs text-[var(--muted)] sm:block">
-            Senior Flutter Developer
-          </span>
+          <div className="hidden flex-col leading-none sm:flex">
+            <span className="text-[0.92rem] font-semibold tracking-tight text-[var(--text)]">
+              Ali Sabry
+            </span>
+            <span className="mt-0.5 text-[0.7rem] text-[var(--muted)]">
+              Senior Flutter Developer
+            </span>
+          </div>
         </Link>
 
-        <ul className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <li key={link.href}>
+        <ul className="hidden md:flex items-center gap-1">
+          {links.map((l) => (
+            <li key={l.href}>
               <a
-                href={link.href}
-                className="text-sm font-medium text-[var(--muted)] transition-colors duration-200 hover:text-[var(--text)]"
+                href={l.href}
+                className="rounded-full px-3.5 py-1.5 text-sm text-[var(--text-2)] transition-colors hover:bg-white/5 hover:text-[var(--text)]"
               >
-                {link.label}
+                {l.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <a
-          href={`mailto:${contactInfo.email}`}
-          className="hidden rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_var(--accent-glow)] transition-all duration-200 hover:bg-[var(--accent-strong)] hover:shadow-[0_0_28px_var(--accent-glow)] md:inline-flex"
-        >
-          Hire me
-        </a>
-
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="p-1 text-[var(--muted)] transition-colors hover:text-[var(--text)] md:hidden"
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-3">
+          <a href="#contact" className="hidden md:inline-flex btn btn-primary h-10">
+            Hire me
+          </a>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] text-[var(--text)]"
+            aria-label="Menu"
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </nav>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
-            className="border-t border-[var(--line)] bg-[rgba(9,9,15,0.97)] backdrop-blur-2xl md:hidden"
-          >
-            <div className="mx-auto flex max-w-[1300px] flex-col px-5 py-4">
-              {navLinks.map((link) => (
+      {open && (
+        <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg)]">
+          <ul className="flex flex-col p-4">
+            {links.map((l) => (
+              <li key={l.href}>
                 <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="border-b border-[var(--line)] py-4 text-base font-medium text-[var(--muted)] transition-colors hover:text-[var(--text)] last:border-b-0"
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-lg px-3 py-3 text-[var(--text)]"
                 >
-                  {link.label}
+                  {l.label}
                 </a>
-              ))}
+              </li>
+            ))}
+            <li className="pt-2">
               <a
-                href={`mailto:${contactInfo.email}`}
-                onClick={() => setMenuOpen(false)}
-                className="mt-4 rounded-full bg-[var(--accent)] py-3 text-center text-sm font-bold text-white"
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="btn btn-primary w-full"
               >
                 Hire me
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

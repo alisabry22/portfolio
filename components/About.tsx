@@ -1,66 +1,67 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { services } from "@/app/data/site";
+import { Smartphone, Sparkles, Globe, Layers } from "lucide-react";
+
+const services = [
+  {
+    icon: Smartphone,
+    title: "Flutter mobile apps",
+    body: "iOS & Android apps with clean architecture, smooth animations, in-app purchases, push, analytics, and store-ready release pipelines.",
+  },
+  {
+    icon: Sparkles,
+    title: "AI-powered features",
+    body: "LLM integrations, voice flows, OCR, and on-device intelligence shaped around real product use cases — not demo theatre.",
+  },
+  {
+    icon: Globe,
+    title: "Web & landing pages",
+    body: "Next.js marketing sites and SaaS frontends that load fast, look sharp, and turn visitors into qualified leads.",
+  },
+  {
+    icon: Layers,
+    title: "Full product ownership",
+    body: "From scoping and UX to engineering and launch — I work as a senior solo collaborator without coordination overhead.",
+  },
+];
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden border-t border-[var(--line)] py-16 sm:py-20">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute right-0 top-0 h-[60vh] w-[40vw] rounded-full bg-[var(--accent-2)] opacity-[0.04] blur-[120px]" />
-
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
-        {/* Header */}
-        <div className="grid gap-8 pb-10 lg:grid-cols-2 lg:gap-12 lg:pb-12">
-          <div className="space-y-4">
-            <p className="section-label">Why clients call</p>
+    <section id="about" className="divider py-20 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:gap-16">
+          <div>
+            <span className="eyebrow">About</span>
             <h2
-              className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
-              style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.25rem)" }}
+              className="mt-4 font-display leading-[1] tracking-[-0.02em] text-[var(--text)]"
+              style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
             >
-              Built for founders.
+              Senior craft.
               <br />
-              <span className="gradient-text">Not for portfolios.</span>
+              Founder pace.
             </h2>
-          </div>
-          <div className="flex flex-col justify-end gap-3 text-base leading-[1.75] text-[var(--muted)]">
-            <p>
-              I work across product thinking, interface polish, and engineering
-              execution so the final result does not feel stitched together by
-              three separate teams.
-            </p>
-            <p>
-              From medical delivery products in Egypt to AI-powered finance and
-              social publishing tools — I focus on products that perform in the
-              real world, not just screenshots.
+            <p className="mt-5 max-w-md text-[0.95rem] leading-[1.75] text-[var(--text-2)]">
+              I&apos;ve been writing Flutter since the early days. Today I help
+              founders and product teams ship apps people actually want to keep
+              on their home screen.
             </p>
           </div>
-        </div>
 
-        {/* Services list */}
-        <div className="border-t border-[var(--line)]">
-          {services.map((service, index) => (
-            <motion.article
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              className="group grid gap-4 border-b border-[var(--line)] py-6 sm:py-8 md:grid-cols-[100px_1fr] md:items-start lg:grid-cols-[140px_1fr]"
-            >
-              <div className="font-mono text-[0.62rem] font-bold tracking-[0.22em] text-[var(--accent)] pt-1">
-                0{index + 1}
-              </div>
-              <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:gap-10">
-                <h3 className="text-lg font-bold leading-snug text-[var(--text)] transition-colors group-hover:text-[var(--accent-strong)] sm:text-xl">
-                  {service.title}
+          <div className="grid gap-3 sm:grid-cols-2">
+            {services.map((s) => (
+              <div key={s.title} className="card p-5 sm:p-6">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--accent-soft)] text-[var(--accent)]">
+                  <s.icon size={17} />
+                </div>
+                <h3 className="mt-4 text-[0.98rem] font-semibold text-[var(--text)]">
+                  {s.title}
                 </h3>
-                <p className="text-sm leading-[1.75] text-[var(--muted)] sm:text-base">
-                  {service.description}
+                <p className="mt-2 text-[0.85rem] leading-[1.7] text-[var(--text-2)]">
+                  {s.body}
                 </p>
               </div>
-            </motion.article>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
