@@ -27,16 +27,19 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-[var(--line)] bg-[rgba(249,247,243,0.92)] backdrop-blur-xl"
+          ? "border-b border-[var(--line)] bg-[rgba(9,9,15,0.88)] backdrop-blur-2xl"
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" className="flex items-center gap-3">
+      <nav className="mx-auto flex h-20 max-w-[1300px] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="h-7 w-7 rounded-lg bg-[var(--accent)] flex items-center justify-center shadow-[0_0_16px_var(--accent-glow)] transition-transform group-hover:scale-110">
+            <span className="text-[0.6rem] font-black text-white">AS</span>
+          </div>
           <span className="text-sm font-bold tracking-tight text-[var(--text)]">
             Ali Sabry
           </span>
-          <span className="hidden h-4 w-px bg-[var(--line)] sm:block" />
+          <span className="hidden h-4 w-px bg-[var(--line-strong)] sm:block" />
           <span className="hidden text-xs text-[var(--muted)] sm:block">
             Product Engineer
           </span>
@@ -57,7 +60,7 @@ export default function Navbar() {
 
         <a
           href={`mailto:${contactInfo.email}`}
-          className="hidden rounded-full bg-[var(--text)] px-5 py-2.5 text-sm font-bold text-[var(--bg)] transition-all duration-200 hover:bg-[#2a2924] md:inline-flex"
+          className="hidden rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_var(--accent-glow)] transition-all duration-200 hover:bg-[var(--accent-strong)] hover:shadow-[0_0_28px_var(--accent-glow)] md:inline-flex"
         >
           Hire me
         </a>
@@ -78,15 +81,15 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="border-t border-[var(--line)] bg-[rgba(249,247,243,0.97)] backdrop-blur-xl md:hidden"
+            className="border-t border-[var(--line)] bg-[rgba(9,9,15,0.97)] backdrop-blur-2xl md:hidden"
           >
-            <div className="mx-auto flex max-w-[1280px] flex-col px-5 py-4">
+            <div className="mx-auto flex max-w-[1300px] flex-col px-5 py-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="border-b border-[var(--line)] py-4 text-base font-medium text-[var(--text)] last:border-b-0"
+                  className="border-b border-[var(--line)] py-4 text-base font-medium text-[var(--muted)] transition-colors hover:text-[var(--text)] last:border-b-0"
                 >
                   {link.label}
                 </a>
@@ -94,7 +97,7 @@ export default function Navbar() {
               <a
                 href={`mailto:${contactInfo.email}`}
                 onClick={() => setMenuOpen(false)}
-                className="mt-4 rounded-full bg-[var(--text)] py-3 text-center text-sm font-bold text-[var(--bg)]"
+                className="mt-4 rounded-full bg-[var(--accent)] py-3 text-center text-sm font-bold text-white"
               >
                 Hire me
               </a>

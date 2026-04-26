@@ -2,39 +2,48 @@ import { contactInfo } from "@/app/data/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--line)] py-10">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-5 px-5 text-sm text-[var(--muted)] sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
-        <div>
-          <div className="font-display text-2xl leading-none text-[var(--text)]">
-            Ali Sabry
-          </div>
-          <div className="mt-1.5">
-            Mobile, SaaS, and AI product engineering.
-          </div>
-        </div>
+    <footer className="relative border-t border-[var(--line)] py-12">
+      {/* Thin gradient accent line */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-40" />
 
-        <div>{contactInfo.email}</div>
+      <div className="mx-auto max-w-[1300px] px-5 sm:px-8 lg:px-12">
+        <div className="flex flex-col gap-6 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between">
+          <div>
+            <div
+              className="font-display leading-none text-[var(--text)]"
+              style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
+            >
+              Ali <span className="gradient-text">Sabry</span>
+            </div>
+            <div className="mt-1.5 text-[0.82rem]">
+              Mobile · SaaS · AI product engineering
+            </div>
+          </div>
 
-        <div className="flex items-center gap-6">
           <a
-            href="#about"
-            className="transition-colors hover:text-[var(--text)]"
+            href={`mailto:${contactInfo.email}`}
+            className="transition-colors hover:text-[var(--accent-strong)]"
           >
-            About
+            {contactInfo.email}
           </a>
-          <a
-            href="#projects"
-            className="transition-colors hover:text-[var(--text)]"
-          >
-            Work
-          </a>
-          <a
-            href="#contact"
-            className="transition-colors hover:text-[var(--text)]"
-          >
-            Contact
-          </a>
-          <span className="opacity-40">© 2025</span>
+
+          <div className="flex items-center gap-6">
+            {[
+              { href: "#about", label: "About" },
+              { href: "#projects", label: "Work" },
+              { href: "#skills", label: "Skills" },
+              { href: "#contact", label: "Contact" },
+            ].map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                className="transition-colors hover:text-[var(--accent-strong)]"
+              >
+                {label}
+              </a>
+            ))}
+            <span className="opacity-30">© 2025</span>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,58 +1,62 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 import { deliveryPoints } from "@/app/data/site";
 
 export default function Skills() {
   return (
     <section
       id="skills"
-      className="border-t border-[var(--line)] py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute right-[-10vw] top-[-5vh] h-[60vh] w-[40vw] rounded-full bg-[var(--accent-2)] opacity-[0.05] blur-[130px]" />
+
+      <div className="mx-auto max-w-[1300px] px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="grid gap-8 pb-16 lg:grid-cols-2 lg:pb-20">
+        <div className="grid gap-10 pb-16 lg:grid-cols-2 lg:pb-20">
           <div className="space-y-4">
             <p className="section-label">Capabilities</p>
             <h2
-              className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
+              className="font-display leading-[0.9] tracking-[-0.02em] text-[var(--text)]"
               style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
             >
               What I take
               <br />
-              off your plate.
+              <span className="gradient-text">off your plate.</span>
             </h2>
           </div>
           <p className="flex items-end pb-1 max-w-xl text-base leading-[1.9] text-[var(--muted)] sm:text-lg">
-            I can step in at strategy, build, or polish level — helping products
-            gain momentum fast without heavy coordination overhead.
+            I step in at strategy, build, or polish level — helping products
+            gain momentum fast without the coordination overhead.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid gap-px border border-[var(--line)] bg-[var(--line)] md:grid-cols-2 xl:grid-cols-4">
+        {/* Cards grid */}
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {deliveryPoints.map((group, index) => (
             <motion.div
               key={group.title}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: index * 0.09 }}
-              className="bg-[var(--bg)] p-7 sm:p-8"
+              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="glass-card group p-6 transition-all duration-300 hover:border-[rgba(124,92,252,0.28)] hover:-translate-y-0.5"
             >
-              <div className="mb-3 text-[0.65rem] font-bold uppercase tracking-[0.26em] text-[var(--accent)]">
+              <div className="mb-2 font-mono text-[0.62rem] font-bold tracking-[0.28em] text-[var(--accent)]">
                 0{index + 1}
               </div>
-              <h3 className="mb-6 text-xl font-bold leading-snug text-[var(--text)]">
+              <h3 className="mb-5 text-lg font-bold leading-snug text-[var(--text)] transition-colors group-hover:text-[var(--accent-strong)]">
                 {group.title}
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-2.5 text-sm text-[var(--muted)]"
-                  >
-                    <span className="h-px w-3 flex-shrink-0 bg-[var(--accent)] opacity-50" />
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-[var(--muted)]">
+                    <Check
+                      size={13}
+                      className="mt-0.5 flex-shrink-0 text-[var(--accent)] opacity-70"
+                    />
                     {item}
                   </li>
                 ))}

@@ -80,21 +80,24 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="border-t border-[var(--line)] bg-[var(--bg-soft)] py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-[var(--line)] py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[50vh] w-[60vw] -translate-x-1/2 rounded-full bg-[var(--accent)] opacity-[0.06] blur-[140px]" />
+
+      <div className="mx-auto max-w-[1300px] px-5 sm:px-8 lg:px-12">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           {/* Left */}
           <div className="space-y-10">
             <div className="space-y-5">
               <p className="section-label">Let&apos;s build</p>
               <h2
-                className="font-display leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
+                className="font-display leading-[0.9] tracking-[-0.02em] text-[var(--text)]"
                 style={{ fontSize: "clamp(3rem, 7vw, 5rem)" }}
               >
                 Make the next
                 <br />
-                launch land.
+                <span className="gradient-text">launch land.</span>
               </h2>
               <p className="max-w-md text-base leading-[1.9] text-[var(--muted)] sm:text-lg">
                 If you know what you need, reach out directly. If the scope is
@@ -122,14 +125,14 @@ export default function Contact() {
                     rel={
                       channel.href.startsWith("http") ? "noreferrer" : undefined
                     }
-                    className="group flex items-center justify-between rounded-xl border border-[var(--line)] bg-[var(--panel)] px-5 py-4 transition-all hover:border-[rgba(20,20,18,0.20)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
+                    className="glass-card group flex items-center justify-between px-5 py-4 transition-all hover:border-[rgba(124,92,252,0.28)] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(124,92,252,0.08)]"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="rounded-full border border-[var(--line)] p-2.5 text-[var(--text)]">
+                      <div className="rounded-full border border-[var(--line-strong)] bg-[var(--accent-fade)] p-2.5 text-[var(--accent-strong)]">
                         <Icon size={17} />
                       </div>
                       <div>
-                        <div className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[var(--muted)]">
+                        <div className="text-[0.62rem] font-bold uppercase tracking-[0.24em] text-[var(--muted)]">
                           {channel.label}
                         </div>
                         <div className="mt-0.5 text-sm font-semibold text-[var(--text)]">
@@ -139,7 +142,7 @@ export default function Contact() {
                     </div>
                     <ArrowUpRight
                       size={16}
-                      className="text-[var(--muted)] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--text)]"
+                      className="text-[var(--muted)] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--accent-strong)]"
                     />
                   </a>
                 );
@@ -155,12 +158,15 @@ export default function Contact() {
 
           {/* Right: Brief builder */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-7 soft-shadow sm:p-8"
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="glass-card relative overflow-hidden p-7 sm:p-8"
           >
+            {/* top glow line */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-50" />
+
             <div className="mb-7 space-y-1.5">
               <h3 className="text-xl font-bold text-[var(--text)]">
                 Draft your message
@@ -174,7 +180,7 @@ export default function Contact() {
             <form ref={formRef} className="space-y-5">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
-                  <label className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
+                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
                     Your name
                   </label>
                   <input
@@ -183,12 +189,12 @@ export default function Contact() {
                     type="text"
                     value={brief.name}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-soft)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[rgba(20,20,18,0.28)]"
+                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
                     placeholder="Your name"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
+                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
                     Your email
                   </label>
                   <input
@@ -197,7 +203,7 @@ export default function Contact() {
                     type="email"
                     value={brief.email}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-soft)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[rgba(20,20,18,0.28)]"
+                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
                     placeholder="john@company.com"
                   />
                 </div>
@@ -205,14 +211,14 @@ export default function Contact() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
-                  <label className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
+                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
                     Project type
                   </label>
                   <select
                     name="projectType"
                     value={brief.projectType}
                     onChange={handleChange}
-                    className="w-full cursor-pointer rounded-xl border border-[var(--line)] bg-[var(--bg-soft)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-colors focus:border-[rgba(20,20,18,0.28)]"
+                    className="w-full cursor-pointer rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all focus:border-[rgba(124,92,252,0.45)]"
                   >
                     <option value="Mobile app">Mobile app</option>
                     <option value="Portfolio or landing page">
@@ -225,7 +231,7 @@ export default function Contact() {
                   </select>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
+                  <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
                     Ideal timeline
                   </label>
                   <input
@@ -233,14 +239,14 @@ export default function Contact() {
                     type="text"
                     value={brief.timeline}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-soft)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[rgba(20,20,18,0.28)]"
+                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
                     placeholder="e.g. start this month"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
+                <label className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--muted-strong)]">
                   Quick brief
                 </label>
                 <textarea
@@ -249,7 +255,7 @@ export default function Contact() {
                   rows={4}
                   value={brief.summary}
                   onChange={handleChange}
-                  className="w-full resize-none rounded-xl border border-[var(--line)] bg-[var(--bg-soft)] px-4 py-3 text-sm leading-[1.8] text-[var(--text)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[rgba(20,20,18,0.28)]"
+                  className="w-full resize-none rounded-xl border border-[var(--line)] bg-[var(--bg-raised)] px-4 py-3 text-sm leading-[1.8] text-[var(--text)] outline-none transition-all placeholder:text-[var(--muted)] focus:border-[rgba(124,92,252,0.45)] focus:shadow-[0_0_0_3px_rgba(124,92,252,0.08)]"
                   placeholder="What are you building, what matters most, and what kind of help do you want from me?"
                 />
               </div>
